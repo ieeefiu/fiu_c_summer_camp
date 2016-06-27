@@ -11,6 +11,7 @@ int main(void)
      * we have to do something called typecasting.
      *
      * Typecasting is turning one data type into another data type.
+     * Here, we are changing the integers to floats
      */
     result = (float)number_1 / (float)number_2;
 
