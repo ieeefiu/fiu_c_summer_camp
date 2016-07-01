@@ -15,10 +15,14 @@ int main(void)
 
 int max(int number_1, int number_2)
 {
+    int result;
+    
     if (number_1 > number_2) {
-        return number_1;
+        result = number_1;
     }
     else {
-        return number_2;
+        result = number_2;
     }
+
+    return result;
 }
