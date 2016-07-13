@@ -1,17 +1,10 @@
 #include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <time.h>
 
 void print_car(int car, int position);
 
 int main()
 {
-    time_t current;
-
     char input[3];
-
-    srand(time(&current));
     
     int car_1_position = 1;
     int car_2_position = 1;
