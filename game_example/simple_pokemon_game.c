@@ -16,24 +16,30 @@ struct pokemon {
 
 typedef struct pokemon Pokemon;
 
-int menu(void);
-
 Pokemon select_pokemon(void);
 int check_type(PokemonType att, PokemonType def);
 int attack(Pokemon *att, Pokemon *def);
-void make_pokemon(Pokemon *p, int selection);
 void print_pokemon(Pokemon *p);
 
 int main()
 {
     srand(time(NULL));
-    Pokemon squirtle = { "Squirtle", "Water Gun", 50, WATER };
-    Pokemon charmander = { "Charmander", "Ember", 50, FIRE };
-    Pokemon bulbasaur = { "Bulbasaur", "Vine Whip", 50, GRASS };
-    Pokemon *attacker = &squirtle;
-    Pokemon *defender = &charmander;
+    
+    printf("Choose your Pokemon!\n");
+    Pokemon first = select_pokemon();
+    printf("\nChoose opponent's Pokemon!\n");
+    Pokemon second = select_pokemon();
+    printf("\n");
+    print_pokemon(&first);
+    printf("versus\n");
+    print_pokemon(&second);
+    printf("\n");
+    
+    Pokemon *attacker = &first;
+    Pokemon *defender = &second;
     Pokemon *temp;
     int battle_result = 0;
+    
     while (battle_result == 0) {
         print_pokemon(attacker);
         print_pokemon(defender);
@@ -45,37 +51,13 @@ int main()
     
 }
 
-int menu(void)
-{
-    char buffer[BUFFER_SIZE];
-    int option;
-    do {
-        printf("Low-budget Pokemon\n\n"
-               "Please choose an option:\n"
-               "1. Battle!\n"
-               "2. View Pokemon\n"
-               "3. Quit\n"
-               "> ");
-        fgets(buffer, BUFFER_SIZE, stdin);
-        if (sscanf(buffer, "%d", &option) != 1) {
-            printf("Invalid input! Try again.\n");
-        }
-        else if ((option < 1) || (option > 3)) {
-            printf("Invalid input! Try again.\n");
-        }
-    } while ((option < 1) || (option > 3));
-
-    return option;
-}
-
 Pokemon select_pokemon(void)
 {
     Pokemon p;
     char buffer[BUFFER_SIZE];
     int option;
     do {
-        printf("Select a Pokemon:\n"
-               "1. Squirtle\n"
+        printf("1. Squirtle\n"
                "2. Bulbasaur\n"
                "3. Charmander\n"
                "> ");
