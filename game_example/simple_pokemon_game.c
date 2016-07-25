@@ -20,6 +20,7 @@ Pokemon select_pokemon(void);
 int check_type(PokemonType att, PokemonType def);
 int attack(Pokemon *att, Pokemon *def);
 void print_pokemon(Pokemon *p);
+void declare_winner(Pokemon *player, Pokemon *opponent);
 
 int main()
 {
@@ -27,7 +28,7 @@ int main()
     
     printf("Choose your Pokemon!\n");
     Pokemon first = select_pokemon();
-    printf("\nChoose opponent's Pokemon!\n");
+    printf("\nChoose rival's Pokemon!\n");
     Pokemon second = select_pokemon();
     printf("\n");
     print_pokemon(&first);
@@ -48,7 +49,9 @@ int main()
         attacker = defender;
         defender = temp;
     }
-    
+    declare_winner(&first, &second);
+
+    return 0;
 }
 
 Pokemon select_pokemon(void)
@@ -171,4 +174,14 @@ int attack(Pokemon *att, Pokemon *def)
 void print_pokemon(Pokemon *p)
 {
     printf("%s: %d HP\n", p->name, p->health);
+}
+
+void declare_winner(Pokemon *player, Pokemon *opponent)
+{
+    if (player->health <= 0) {
+        printf("Rival wins!\n");
+    }
+    else {
+        printf("You win!\n");
+    }
 }
